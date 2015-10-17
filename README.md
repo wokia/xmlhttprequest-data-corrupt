@@ -1,6 +1,14 @@
 # xmlhttprequest-data-corrupt [![Build Status](https://travis-ci.org/wokia/xmlhttprequest-data-corrupt.svg?branch=master)](https://travis-ci.org/wokia/xmlhttprequest-data-corrupt) [![Build status](https://ci.appveyor.com/api/projects/status/b32m332ic8dioe41?svg=true)](https://ci.appveyor.com/project/wokia/xmlhttprequest-data-corrupt)
 XMLHttpRequest で読み込んだ Binary Data の先頭部分が壊れてしまうのを再現したテスト。
 
+## 解決 (2015/10/18 追記)
+下記の問題は解決しました. 原因は予想通り、Karma の Web-Server にあったようです.
+
+この Repository の GitHub Pages として、検証コードを下記に上げました.
+http://wokia.github.io/xmlhttprequest-data-corrupt/
+
+問題となっているコードと同様の処理を html にかいて Chrome 上で表示してみたところ、想定通りの値が返ってきました.つまり、Karma の Web-Server が読み込んだ値として、Binary Data の先頭部分を変化させたデータを返していた、という事が問題の原因のようです.
+
 ## 問題の概要
 0x80 よりも大きな値が先頭の 1 byte に入った Binary Data を XMLHttpRequest で読み込むと、先頭の 1 byte が 3 byte の値に変化してしまう。
 
