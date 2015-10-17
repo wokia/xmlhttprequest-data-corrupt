@@ -34,7 +34,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: process.env.APPVEYOR ? ['appveyor'] : ['progress'],
 
 
     // web server port
@@ -54,9 +54,16 @@ module.exports = function(config) {
     autoWatch: false,
 
 
+    customLaunchers: {
+      ChromeForTravisCI: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      },
+    },
+
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+	browsers: process.env.TRAVIS ? ['ChromeForTravisCI', 'Firefox'] : process.env.APPVEYOR ? ['Chrome', 'Firefox', 'IE'] : ['Chrome'],
 
 
     // Continuous Integration mode
