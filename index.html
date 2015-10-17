@@ -6,37 +6,37 @@
 		<script type="text/javascript">
 			function main() {
 				{
-					var request = new XMLHttpRequest();
+					var request0x7f = new XMLHttpRequest();
 
-					request.open('GET', '0x7f.bin');
+					request0x7f.open('GET', '0x7f.bin');
 
-					request.responseType = 'arraybuffer';
-					request.addEventListener('loadend', function () {
-						if (request.status != 200) {
+					request0x7f.responseType = 'arraybuffer';
+					request0x7f.addEventListener('loadend', function () {
+						if (request0x7f.status != 200) {
 							return ;
 						}
 
-						var content = (new Uint8Array(request.response)).toString();
+						var content = (new Uint8Array(request0x7f.response)).toString();
 
 						var element = document.getElementById('0x7F');
 						element.appendChild(document.createTextNode(content));
 					});
 
-					request.overrideMimeType('application/octet-stream');
-					request.send();
+					request0x7f.overrideMimeType('application/octet-stream');
+					request0x7f.send();
 				}
 				{
-					var request = new XMLHttpRequest();
+					var request0x80 = new XMLHttpRequest();
 
-					request.open('GET', '0x80.bin');
+					request0x80.open('GET', '0x80.bin');
 
-					request.responseType = 'arraybuffer';
-					request.addEventListener('loadend', function () {
-						if (request.status != 200) {
+					request0x80.responseType = 'arraybuffer';
+					request0x80.addEventListener('loadend', function () {
+						if (request0x80.status != 200) {
 							return ;
 						}
 
-						var content = (new Uint8Array(request.response)).toString();
+						var content = (new Uint8Array(request0x80.response)).toString();
 
 						var element = document.getElementById('0x80');
 						element.appendChild(document.createTextNode(content));
@@ -56,14 +56,14 @@
 			<h3>ORIGINAL</h3>
 			<div>[ 0x7F, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]</div>
 			<h3>READED</h3>
-			<div id='0x7F'>--------</div>
+			<div id='0x7F'></div>
 		</p>
 		<p>
 			<h2>0x80.bin</h2>
 			<h3>ORIGINAL</h3>
 			<div>[ 0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]</div>
 			<h3>READED</h3>
-			<div id='0x80'>--------</div>
+			<div id='0x80'></div>
 		</p>
 	</body>
 </html>
