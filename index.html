@@ -4,47 +4,30 @@
 		<meta charset="utf-8">
 		<title>Verification page</title>
 		<script type="text/javascript">
+			function readBinFile(filename, elementId) {
+				var request = new XMLHttpRequest();
+
+				request.open('GET', filename);
+
+				request.responseType = 'arraybuffer';
+				request.addEventListener('loadend', function () {
+					if (request.status != 200) {
+						return ;
+					}
+
+					var content = (new Uint8Array(request.response)).toString();
+
+					var element = document.getElementById(elementId);
+					element.appendChild(document.createTextNode(content));
+				});
+
+				request.overrideMimeType('application/octet-stream');
+				request.send();
+			}
+
 			function main() {
-				{
-					var request0x7f = new XMLHttpRequest();
-
-					request0x7f.open('GET', '0x7f.bin');
-
-					request0x7f.responseType = 'arraybuffer';
-					request0x7f.addEventListener('loadend', function () {
-						if (request0x7f.status != 200) {
-							return ;
-						}
-
-						var content = (new Uint8Array(request0x7f.response)).toString();
-
-						var element = document.getElementById('0x7F');
-						element.appendChild(document.createTextNode(content));
-					});
-
-					request0x7f.overrideMimeType('application/octet-stream');
-					request0x7f.send();
-				}
-				{
-					var request0x80 = new XMLHttpRequest();
-
-					request0x80.open('GET', '0x80.bin');
-
-					request0x80.responseType = 'arraybuffer';
-					request0x80.addEventListener('loadend', function () {
-						if (request0x80.status != 200) {
-							return ;
-						}
-
-						var content = (new Uint8Array(request0x80.response)).toString();
-
-						var element = document.getElementById('0x80');
-						element.appendChild(document.createTextNode(content));
-					});
-
-					request.overrideMimeType('application/octet-stream');
-					request.send();
-				}
+				readBinFile('0x7f.bin', '0x7F');
+				readBinFile('0x80.bin', '0x80');
 			}
 		</script>
 	</head>
